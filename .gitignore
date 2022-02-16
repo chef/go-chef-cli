@@ -1,0 +1,18 @@
+# temp things
+test_results/
+tags
+.DS_Store
+.chef/
+go-knife
+go_knife
+# ruby / bundler
+Gemfile.lock
+*/vendor/*
+
+# vi
+*.swp
+
+# Habitat
+results/
+bin/
+.idea/
