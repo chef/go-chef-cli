@@ -18,8 +18,6 @@ LIMITATIONS UNDER THE LICENSE.
 package cmd
 
 import (
-	"os"
-
 	"github.com/chef/go-knife/core"
 	"github.com/spf13/cobra"
 )
@@ -45,24 +43,9 @@ var rootCmd = &cobra.Command{
 
 // Execute adds all child commands to the root command and sets flags appropriately.
 // This is called by main.main(). It only needs to happen once to the rootCmd.
-func Execute() {
-	// data, chefPath := config.LoadConfig(cfgFile)
-	// configRbData, err := dsl.NewClientRb(data, chefPath)
-	// if err != nil {
-	// 	fmt.Println("not valid config file")
-	// 	os.Exit(1)
-	// }
-	// config.ServerUrl = configRbData.ChefServerUrl
-	// config.ClientKey = configRbData.ClientKey
-	// wd := chefPath
-	// if idx := strings.Index(chefPath, ".chef"); idx != -1 {
-	// 	wd = chefPath[:idx]
-	// }
-	// _ = wd
-	err := rootCmd.Execute()
-	if err != nil {
-		os.Exit(1)
-	}
+func Execute() error {
+	return rootCmd.Execute()
+
 }
 
 func init() {

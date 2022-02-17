@@ -18,7 +18,7 @@ type DownloadArtifact struct {
 }
 
 type DownloadProvider interface {
-	Download(ui core.UI, config core.Config)
+	Download(ui core.UI, config core.Config) error
 	Version() string
 }
 

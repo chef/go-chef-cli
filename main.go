@@ -18,10 +18,17 @@ LIMITATIONS UNDER THE LICENSE.
 package main
 
 import (
+	"fmt"
+	"os"
+
 	"github.com/chef/go-knife/cmd"
 )
 
 func main() {
-	cmd.Execute()
+	err := cmd.Execute()
+	if err != nil {
+		fmt.Println(err.Error())
+		os.Exit(1)
+	}
 
 }

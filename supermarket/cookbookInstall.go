@@ -30,7 +30,11 @@ func (ci CookbookInstall) Install(ui core.UI, config core.Config) {
 	prepareToImport(ci.ArtifactName, ci.Location, ui)
 	cookBookInstallPath := filepath.Join(ci.Location, fmt.Sprintf("%s.tar.gz", ci.ArtifactName))
 	dp := NewDownloadProvider(ci.ArtifactName, "", ArtifactCookbook, filepath.Join(ci.Location, ci.ArtifactName+".tar.gz"), "", false)
-	dp.Download(ui, config)
+	err := dp.Download(ui, config)
+	if err != nil {
+		ui.Error(err.Error())
+		os.Exit(1)
+	}
 	clearExistingFiles(ci.Location, ci.ArtifactName, ui)
 	extractCookbook(ci.Location, cookBookInstallPath, ci.ArtifactName, dp.Version(), ui)
 	ui.Msg("Removing downloaded tarball")

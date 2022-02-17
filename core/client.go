@@ -210,13 +210,11 @@ func (c *Client) Do(req *http.Request, v interface{}) (*http.Response, error) {
 
 	// no response interface specified
 	if v == nil {
-		fmt.Println("No response body requested")
 		return res, nil
 	}
 
 	// response interface, v, is an io writer
 	if w, ok := v.(io.Writer); ok {
-		fmt.Println("Response output desired is an io Writer")
 		_, err = io.Copy(w, resTee)
 		return res, err
 	}
@@ -273,17 +271,4 @@ func (c Client) MagicRequestResponseDecoder(url, method string, body io.Reader, 
 		return err
 	}
 	return err
-}
-
-// getNoAuthHTTPClient this will return default http client without any auth
-func GetNoAuthHTTPClient() http.Client {
-	netTransport := http.Transport{
-		IdleConnTimeout:     30 * time.Second,
-		TLSHandshakeTimeout: 20 * time.Second,
-		TLSClientConfig:     &tls.Config{InsecureSkipVerify: true},
-	}
-	return http.Client{
-		Timeout:   60 * time.Second,
-		Transport: &netTransport,
-	}
 }

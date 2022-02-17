@@ -2,6 +2,7 @@ package supermarket
 
 import (
 	"crypto/md5"
+	"errors"
 	"fmt"
 	"io"
 	"os"
@@ -24,12 +25,12 @@ func (cd CookbookDownload) String() string {
 }
 
 // Download will download given cookbook to given location or current dir
-func (cd *CookbookDownload) Download(ui core.UI, config core.Config) {
+func (cd *CookbookDownload) Download(ui core.UI, config core.Config) error {
 	client := core.NewClient()
 	var cookbookData cookbookDetails
 	err := client.MagicRequestResponseDecoder(cd.String(), "GET", nil, &cookbookData)
 	if err != nil {
-		ui.Fatal(err.Error())
+		return err
 	}
 	if cookbookData.Deprecated {
 		ui.Msg(ui.ColorMsg("DEPRECATION: This cookbook has been deprecated. ", "yellow"))
@@ -40,7 +41,7 @@ func (cd *CookbookDownload) Download(ui core.UI, config core.Config) {
 		}
 		if !cd.da.Force {
 			ui.Warn("Use --force to force download deprecated cookbook.")
-			os.Exit(1)
+			return errors.New("not able to download deprecated cookbook without force")
 		}
 	}
 
@@ -51,13 +52,14 @@ func (cd *CookbookDownload) Download(ui core.UI, config core.Config) {
 	var dcd cookbookDownloadDetails
 	err = client.MagicRequestResponseDecoder(cookbookLatestUrl, "GET", nil, &dcd)
 	if err != nil {
-		ui.Fatal(err.Error())
+		return err
 	}
 	if len(cd.da.Location) < 1 {
 		cd.da.Location = downloadLocation(cd.CookbookName, dcd.Version)
 		cd.version = dcd.Version
 	}
 	downloadCookBook(client, cd.CookbookName, cd.da.Location, dcd, ui)
+	return err
 }
 
 func downloadLocation(name, version string) string {

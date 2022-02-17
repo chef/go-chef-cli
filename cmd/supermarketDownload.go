@@ -41,7 +41,10 @@ var supermarketDownloadCmd = &cobra.Command{
 		var config core.Config
 		config.Format = format
 		dp := supermarket.NewDownloadProvider(args[1], superMarkerUri, args[0], fileName, specificVersion, force)
-		dp.Download(ui, config)
+		err := dp.Download(ui, config)
+		if err != nil {
+			ui.Error(err.Error())
+		}
 		os.Exit(1)
 	},
 }
