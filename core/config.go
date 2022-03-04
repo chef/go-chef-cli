@@ -79,5 +79,5 @@ func GetDefaultConfigPath() string {
 }
 
 func checkChefDirExists(path string) bool {
-	return isDirExists(filepath.Join(path, configPath))
+	return doesDirExist(filepath.Join(path, configPath))
 }

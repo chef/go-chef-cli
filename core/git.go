@@ -47,9 +47,9 @@ func GetCurrentBranch(path string) string {
 	return branch
 }
 
-func IsGitRepoExists(path string) bool {
+func DoesGitRepoExist(path string) bool {
 	path = filepath.Join(path, ".git")
-	return isDirExists(path)
+	return doesDirExist(path)
 }
 
 func IsUnCommittedWorkPresent(path string) (bool, string) {
@@ -68,7 +68,7 @@ func executeCmd(cmd, path string, args ...string) (string, error) {
 	return string(data), err
 }
 
-func isDirExists(path string) bool {
+func doesDirExist(path string) bool {
 	info, err := os.Stat(path)
 	if err != nil {
 		return false
@@ -76,11 +76,11 @@ func isDirExists(path string) bool {
 	return info.IsDir()
 }
 func SanityCheck(path, defaultBranch string, useCurrentBranch bool, ui UI) bool {
-	if !isDirExists(path) {
+	if !doesDirExist(path) {
 		ui.Error(fmt.Sprintf("The cookbook repo path %s does not exist or is not a directory", path))
 		os.Exit(1)
 	}
-	if !IsGitRepoExists(path) {
+	if !DoesGitRepoExist(path) {
 		ui.Error(fmt.Sprintf("The cookbook repo %s is not a git repository.", path))
 		ui.Msg("Use `git init` to initialize a git repo")
 		os.Exit(1)

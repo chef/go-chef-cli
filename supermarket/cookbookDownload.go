@@ -9,6 +9,7 @@ import (
 	"path/filepath"
 	"strings"
 
+	"github.com/chef/go-chef"
 	"github.com/chef/go-knife/core"
 )
 
@@ -26,9 +27,12 @@ func (cd CookbookDownload) String() string {
 
 // Download will download given cookbook to given location or current dir
 func (cd *CookbookDownload) Download(ui core.UI, config core.Config) error {
-	client := core.NewClient()
+	client, err := chef.NewClientWithOutConfig(cd.da.Url)
+	if err != nil {
+		ui.Fatal(err.Error())
+	}
 	var cookbookData cookbookDetails
-	err := client.MagicRequestResponseDecoder(cd.String(), "GET", nil, &cookbookData)
+	err = client.MagicRequestResponseDecoderWithOutAuth(cd.String(), "GET", nil, &cookbookData)
 	if err != nil {
 		return err
 	}
@@ -50,7 +54,7 @@ func (cd *CookbookDownload) Download(ui core.UI, config core.Config) error {
 		cookbookLatestUrl = strings.ReplaceAll(cd.SpecificVersion, ".", "_")
 	}
 	var dcd cookbookDownloadDetails
-	err = client.MagicRequestResponseDecoder(cookbookLatestUrl, "GET", nil, &dcd)
+	err = client.MagicRequestResponseDecoderWithOutAuth(cookbookLatestUrl, "GET", nil, &dcd)
 	if err != nil {
 		return err
 	}
@@ -120,9 +124,9 @@ type cookbookDownloadDetails struct {
 // 	return response
 // }
 
-func downloadCookBook(client core.Client, name, fileLocation string, cbd cookbookDownloadDetails, ui core.UI) {
+func downloadCookBook(client *chef.Client, name, fileLocation string, cbd cookbookDownloadDetails, ui core.UI) {
 	ui.Msg(fmt.Sprintf("Downloading %s from Supermarket at version %s to %s", name, cbd.Version, fileLocation))
-	req, err := client.NewRequest("GET", cbd.File, nil)
+	req, err := client.NoAuthNewRequest("GET", cbd.File, nil)
 	if err != nil {
 		ui.Fatal(err.Error())
 	}

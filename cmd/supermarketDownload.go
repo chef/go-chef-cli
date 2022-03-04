@@ -8,15 +8,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-type cookbookData struct {
-	Replacement   string `json:"replacement"`
-	LatestVersion string `json:"latest_version"`
-	Deprecated    bool   `json:"deprecated"`
-	Version       string `json:"version"`
-	File          string `json:"file"`
-	Size          int64  `json:"tarball_file_size"`
-}
-
 var (
 	fileName string
 	force    bool

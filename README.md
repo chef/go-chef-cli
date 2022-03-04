@@ -29,7 +29,7 @@ github](https://github.com/chef/go-knife/issues).
 
 ## License and Copyright
 
-Copyright 2008-2022, Chef Software, Inc.
+Copyright 2008-2020, Chef Software, Inc.
 
 ```
 Licensed under the Apache License, Version 2.0 (the "License");

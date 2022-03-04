@@ -3,6 +3,7 @@ package supermarket
 import (
 	"fmt"
 
+	"github.com/chef/go-chef"
 	"github.com/chef/go-knife/core"
 )
 
@@ -17,9 +18,12 @@ func (cs CookbookSearch) String() string {
 
 // Search will search for given term on supermarket site
 func (cs CookbookSearch) Search(ui core.UI, config core.Config) {
-	client := core.NewClient()
+	client, err := chef.NewClientWithOutConfig(cs.Url)
+	if err != nil {
+		ui.Fatal(err.Error())
+	}
 	var response cookBookResponse
-	err := client.MagicRequestResponseDecoder(cs.String(), "GET", nil, &response)
+	err = client.MagicRequestResponseDecoderWithOutAuth(cs.String(), "GET", nil, &response)
 	if err != nil {
 		ui.Fatal(err.Error())
 	}

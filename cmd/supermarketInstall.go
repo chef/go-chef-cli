@@ -6,8 +6,8 @@ import (
 	"regexp"
 	"strings"
 
+	"github.com/chef/go-chef"
 	"github.com/chef/go-knife/core"
-	"github.com/chef/go-knife/dsl"
 	"github.com/chef/go-knife/supermarket"
 	"github.com/spf13/cobra"
 )
@@ -22,8 +22,8 @@ var (
 // supermarketSearchCmd represents the supermarket search
 var supermarketInstallCmd = &cobra.Command{
 	Use:   "install",
-	Short: "Search indexes allow queries to be made for any type of data that is indexed by the Chef Infra Server, including data bags (and data bag items), environments, nodes, and roles",
-	Long:  `Search indexes allow queries to be made for any type of data that is indexed by the Chef Infra Server, including data bags (and data bag items), environments, nodes, and roles. A defined query syntax is used to support search patterns like exact, wildcard, range, and fuzzy. A search is a full-text query that can be done from several locations, including from within a recipe, by using the search subcommand in knife.`,
+	Short: "install command will install cookbook that has been downloaded from Chef Supermarket to a local git repository",
+	Long:  `install command will install cookbook that has been downloaded from Chef Supermarket to a local git repository. This action uses the git version control system in conjunction with Chef Supermarket site to install community-contributed cookbooks to the local chef-repo.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		var ui core.UI
 		supermarket.ValidateArgsAndType(args, "", ui)
@@ -49,12 +49,12 @@ var supermarketInstallCmd = &cobra.Command{
 		ci := supermarket.NewInstallProvider(args[1], superMarkerUri, installPath, defaultBranch, args[0], noDeps, useCurrentBranch)
 		ci.Install(ui, config)
 		if !ci.InstallDeps() {
-			m, err := dsl.ReadMetaData(filepath.Join(installPath, args[1]))
+			m, err := chef.ReadMetaData(filepath.Join(installPath, args[1]))
 			if err != nil {
 				ui.Error("unable to read meta file: " + err.Error())
 				os.Exit(1)
 			}
-			for name := range m.Dependencies {
+			for name := range m.Depends {
 				ci.ChangeArtifactName(name)
 				ci.Install(ui, config)
 			}
