@@ -18,7 +18,7 @@ LIMITATIONS UNDER THE LICENSE.
 package cmd
 
 import (
-	"github.com/chef/go-knife/core"
+	"github.com/chef/go-chef-cli/core"
 	"github.com/spf13/cobra"
 )
 

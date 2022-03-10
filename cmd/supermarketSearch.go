@@ -7,8 +7,8 @@ package cmd
 import (
 	"os"
 
-	"github.com/chef/go-knife/core"
-	"github.com/chef/go-knife/supermarket"
+	"github.com/chef/go-chef-cli/core"
+	"github.com/chef/go-chef-cli/supermarket"
 	"github.com/spf13/cobra"
 )
 

@@ -21,7 +21,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/chef/go-knife/cmd"
+	"github.com/chef/go-chef-cli/cmd"
 )
 
 func main() {

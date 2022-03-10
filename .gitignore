@@ -5,6 +5,7 @@ tags
 .chef/
 go-knife
 go_knife
+go-chef-cli
 # ruby / bundler
 Gemfile.lock
 */vendor/*

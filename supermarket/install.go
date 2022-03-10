@@ -1,7 +1,7 @@
 package supermarket
 
 import (
-	"github.com/chef/go-knife/core"
+	"github.com/chef/go-chef-cli/core"
 )
 
 type InstallArtifact struct {

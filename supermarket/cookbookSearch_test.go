@@ -7,7 +7,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/chef/go-knife/core"
+	"github.com/chef/go-chef-cli/core"
 )
 
 func TestCookbookSearch_Search(t *testing.T) {

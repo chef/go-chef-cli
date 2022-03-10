@@ -9,7 +9,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/chef/go-knife/core"
+	"github.com/chef/go-chef-cli/core"
 )
 
 type CookbookInstall struct {

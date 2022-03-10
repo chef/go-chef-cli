@@ -3,8 +3,8 @@ package supermarket
 import (
 	"fmt"
 
-	"github.com/chef/go-chef"
-	"github.com/chef/go-knife/core"
+	"github.com/chef/go-chef-cli/core"
+	"github.com/go-chef/chef"
 )
 
 type CookbookSearch struct {

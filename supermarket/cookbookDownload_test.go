@@ -7,7 +7,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/chef/go-knife/core"
+	"github.com/chef/go-chef-cli/core"
 )
 
 var ui core.UI

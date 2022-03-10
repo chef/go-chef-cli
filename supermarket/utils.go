@@ -3,7 +3,7 @@ package supermarket
 import (
 	"os"
 
-	"github.com/chef/go-knife/core"
+	"github.com/chef/go-chef-cli/core"
 )
 
 const ArtifactCookbook = "cookbook"

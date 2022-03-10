@@ -4,14 +4,14 @@ A Go package to have similar functionality like chef knife or we can say chef kn
 
 Install the package using
 ```go
-$ go get github.com/chef/go-knife
+$ go get github.com/chef/go-chef-cli
 ```
 
 ### Usage
 
 To use as go-knife the package import it in your `*.go` code
 ```go
-import "github.com/chef/go-knife"
+import "github.com/chef/go-chef-cli"
 
 ```
 
@@ -24,7 +24,7 @@ comming soon...!
 
 
 If you encounter any bugs or issues, feel free to [open an issue at
-github](https://github.com/chef/go-knife/issues).
+github](https://github.com/chef/go-chef-cli/issues).
 
 
 ## License and Copyright

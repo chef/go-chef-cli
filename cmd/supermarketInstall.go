@@ -6,9 +6,9 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/chef/go-chef"
-	"github.com/chef/go-knife/core"
-	"github.com/chef/go-knife/supermarket"
+	"github.com/chef/go-chef-cli/core"
+	"github.com/chef/go-chef-cli/supermarket"
+	"github.com/go-chef/chef"
 	"github.com/spf13/cobra"
 )
 
