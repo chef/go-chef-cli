@@ -10,7 +10,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var superMarkerUri string
+var superMarketUri, configPath string
 
 // SupermarketCmd represents the supermarket command
 var SupermarketCmd = &cobra.Command{
@@ -25,6 +25,7 @@ var SupermarketCmd = &cobra.Command{
 
 func init() {
 	rootCmd.AddCommand(SupermarketCmd)
-	SupermarketCmd.PersistentFlags().StringVarP(&superMarkerUri, "supermarket-site", "m", "https://supermarket.chef.io", "will be use as cookbook locator")
+	SupermarketCmd.PersistentFlags().StringVarP(&superMarketUri, "supermarket-site", "m", "https://supermarket.chef.io", "will be use as cookbook locator")
+	SupermarketCmd.PersistentFlags().StringVarP(&configPath, "config", "c", "", "The configuration file to use")
 
 }
