@@ -27,6 +27,10 @@ var supermarketUnShareCmd = &cobra.Command{
 			os.Exit(1)
 		}
 		var c core.Config
+		if !ui.ConfirmWithoutExit(config, "Do you really want to unshare all versions of the cookbook starter? (Y/N): ", false, 2) {
+			ui.Msg("You said no, so I'm done here.")
+			os.Exit(1)
+		}
 		data, path := c.LoadConfig(configPath)
 		var cc chef.ConfigRb
 		cc, err := chef.NewClientRb(data, path)
