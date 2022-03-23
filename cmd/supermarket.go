@@ -24,6 +24,7 @@ var SupermarketCmd = &cobra.Command{
 			info, _ := os.Stat(filepath.Join( os.TempDir(),"f816c88c-aa94-11ec-b909-0242ac120002"))
 			if info == nil {
 				fmt.Println("To use chef supermarket you need to enable it. \nTo enable it run `chef supermarket enable true`")
+
 				os.Exit(1)
 			}
 		}
