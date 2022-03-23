@@ -39,7 +39,7 @@ var supermarketUnShareCmd = &cobra.Command{
 		}
 		err = supermarket.UnShareCookbook(args[1], superMarketUri, cc.NodeName, cc.ClientKey)
 		if err != nil {
-			ui.Error(fmt.Sprintf("Forbidden: You must be the maintainer of %s to unshare it & #{config[:supermarket_site]} must allow maintainers to unshare cookbooks.", args[1]))
+			ui.Error(fmt.Sprintf("Forbidden: You must be the maintainer of %s to unshare it & %s must allow maintainers to unshare cookbooks.", args[1], superMarketUri))
 			ui.Warn("The default supermarket https://supermarket.chef.io does not allow maintainers to unshare cookbooks.")
 			os.Exit(1)
 		}
