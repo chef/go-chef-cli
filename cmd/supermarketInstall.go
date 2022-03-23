@@ -4,7 +4,6 @@ import (
 	"os"
 	"path/filepath"
 	"regexp"
-	"strings"
 
 	"github.com/chef/go-chef-cli/core"
 	"github.com/chef/go-chef-cli/supermarket"
@@ -39,8 +38,7 @@ var supermarketInstallCmd = &cobra.Command{
 		}
 		installPath := ""
 		if len(cookBookPath) > 1 {
-			cookbooks := strings.Split(cookBookPath, ":")
-			installPath = cookbooks[0]
+			installPath = cookBookPath
 		} else {
 			installPath = core.GetDefaultConfigPath()
 		}
