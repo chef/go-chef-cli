@@ -21,6 +21,9 @@ var supermarketListCmd = &cobra.Command{
 	Long:  `Use the list argument to view a list of cookbooks that are currently available at Chef Supermarket.`,
 	Run: func(cmd *cobra.Command, args []string) {
 		var ui core.UI
+		if len(args) < 1 {
+			ui.Fatal("please provide artifact type")
+		}
 		if !supermarket.ValidateArtifact(args[0]) {
 			ui.Msg("only cookbook type artifact supported as of now.")
 			os.Exit(1)

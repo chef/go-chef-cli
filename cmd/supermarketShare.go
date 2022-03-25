@@ -23,6 +23,9 @@ var supermarketShareCmd = &cobra.Command{
 	DisableFlagParsing: true,
 	Run: func(cmd *cobra.Command, args []string) {
 		var ui core.UI
+		if len(args) < 1 {
+			ui.Fatal("please provide artifact type")
+		}
 		if !supermarket.ValidateArtifact(args[0]) {
 			ui.Msg("only cookbook type artifact supported as of now.")
 			os.Exit(1)
