@@ -18,7 +18,7 @@ func TestCookbookUnshare(t *testing.T) {
 	var cc chef.ConfigRb
 	cc, err := chef.NewClientRb(data, path)
 	if err != nil {
-		ui.Fatal("No knife configuration file found. See https://docs.chef.io/config_rb/ for details.")
+		ui.Fatal("No chef configuration file found. See https://docs.chef.io/config_rb/ for details.")
 	}
 	err = UnShareCookbook("mysql", "https://supermarket.chef.io", cc.NodeName, cc.ClientKey)
 

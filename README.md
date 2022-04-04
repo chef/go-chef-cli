@@ -1,5 +1,5 @@
-# go-knife
-A Go package to have similar functionality like chef knife or we can say chef knife go version
+# go-chef-cli
+A Go package to have supermarket functionality 
 ### Installation
 
 Install the package using
@@ -9,7 +9,7 @@ $ go get github.com/chef/go-chef-cli
 
 ### Usage
 
-To use as go-knife the package import it in your `*.go` code
+To use as go-cgef-cli the package import it in your `*.go` code
 ```go
 import "github.com/chef/go-chef-cli"
 
