@@ -9,7 +9,7 @@ documentation of this tool in an early stage.
 ### Main help
 ```bash
 $ chef supermarket help
-knife is a command-line tool that provides an interface between a local chef-repo and the Chef Infra Server. knife helps users to manage:
+chef is a command-line tool that provides an interface between a local chef-repo and the Chef Infra Server. chef helps users to manage:
                         Nodes
                         Cookbooks and recipes
                         Roles, Environments, and Data Bags
@@ -35,10 +35,10 @@ $
 ### `search` sub-command help
 ```bash
 $ chef supermarket search --help
-Search indexes allow queries to be made for any type of data that is indexed by the Chef Infra Server, including data bags (and data bag items), environments, nodes, and roles. A defined query syntax is used to support search patterns like exact, wildcard, range, and fuzzy. A search is a full-text query that can be done from several locations, including from within a recipe, by using the search subcommand in knife.
+Search indexes allow queries to be made for any type of data that is indexed by the Chef Infra Server, including data bags (and data bag items), environments, nodes, and roles. A defined query syntax is used to support search patterns like exact, wildcard, range, and fuzzy. A search is a full-text query that can be done from several locations, including from within a recipe, by using the search subcommand in chef.
 
 Usage:
-  knife supermarket search [flags]
+  chef supermarket search [flags]
 
 Flags:
   -f, --format string   will be use to search cookbook (default "yaml")
@@ -52,10 +52,10 @@ Global Flags:
 ### `download` sub-command help
 ```bash
 $ chef supermarket download --help
-A cookbook will be downloaded as a tar.gz archive and placed in the current working directory. If a cookbook (or cookbook version) has been deprecated and the --force option is not used, knife will alert the user that the cookbook is deprecated and then will provide the name of the most recent non-deprecated version of that cookbook.
+A cookbook will be downloaded as a tar.gz archive and placed in the current working directory. If a cookbook (or cookbook version) has been deprecated and the --force option is not used, chef will alert the user that the cookbook is deprecated and then will provide the name of the most recent non-deprecated version of that cookbook.
 
 Usage:
-  knife supermarket download [flags]
+  chef supermarket download [flags]
 
 Flags:
   -f, --file string   The filename to write to.
@@ -72,7 +72,7 @@ $ chef supermarket install --help
 install command will install cookbook that has been downloaded from Chef Supermarket to a local git repository. This action uses the git version control system in conjunction with Chef Supermarket site to install community-contributed cookbooks to the local chef-repo.
 
 Usage:
-  knife supermarket install [flags]
+  chef supermarket install [flags]
 
 Flags:
   -B, --branch string          Default branch to work with. (default "master")
