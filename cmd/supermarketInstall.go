@@ -40,7 +40,13 @@ var supermarketInstallCmd = &cobra.Command{
 		if len(cookBookPath) > 1 {
 			installPath = cookBookPath
 		} else {
-			installPath = core.GetDefaultConfigPath()
+			path,err := core.GetDefaultCookbookPath()
+			if err != nil{
+				ui.Fatal(err.Error())
+				os.Exit(1)
+			}
+			installPath = path
+
 		}
 		var config core.Config
 		config.Format = format

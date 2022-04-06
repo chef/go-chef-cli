@@ -2,15 +2,17 @@ package core
 
 import (
 	"fmt"
+	"image/color"
 	"os"
+	"runtime"
 	"strings"
 
 	"github.com/muesli/termenv"
 )
 
-const colorRed = "#FF0000"
-const colorBlue = "#0000FF"
-const colorYellow = "#FFFF00"
+const colorRed = "31"
+const colorBlue = "34"
+const colorYellow = "33"
 const jsonFormat = "json"
 const yamlFormat = "yaml"
 const textFormat = "text"
@@ -65,9 +67,10 @@ func (u *UI) Output(config Config, data interface{}) {
 func (u *UI) Msg(message string) {
 	fmt.Println(message)
 }
-func colorMessage(message, color string) string {
-	tColor := termenv.ColorProfile().Color(color)
-	return termenv.String(message).Foreground(tColor).Bold().String()
+func colorMessage(message, colorType string) string {
+	tColor := termenv.ColorProfile()
+	//a := tColor.Color(colorType)
+	return termenv.String(message).Foreground(tColor.FromColor(color.RGBA{255,126,0,22})).Bold().String()
 }
 
 // Debug Print a debug
@@ -150,5 +153,11 @@ func (u *UI) ConfirmWithoutExit(config Config, question string, appendInstructio
 func (u *UI) Confirm(config Config, question string, appendInstructions bool, defaultChoice int) {
 	if !u.ConfirmWithoutExit(config, question, appendInstructions, defaultChoice) {
 		os.Exit(3)
+	}
+}
+
+func init()  {
+	if runtime.GOOS == "windows"{
+		_, _ = termenv.EnableWindowsANSIConsole()
 	}
 }
