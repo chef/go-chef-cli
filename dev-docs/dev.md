@@ -18,7 +18,7 @@ chef is a command-line tool that provides an interface between a local chef-repo
                         Searching of indexed data on the Chef Infra Server.
 
 Usage:
-  chef supermarket [command]
+  chef supermarket COMMAND ARTIFACT_TYPE ARTIFACT_NAME
 
 Available Commands:
   help        Help about any command

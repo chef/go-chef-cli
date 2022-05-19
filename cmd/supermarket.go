@@ -16,10 +16,15 @@ var superMarketUri, enableSupermarket, configPath string
 
 // SupermarketCmd represents the supermarket command
 var SupermarketCmd = &cobra.Command{
-	Use:   "supermarket",
-	Short: "chef supermarket subcommand is used to interact with cookbooks that are located in on the public Supermarket",
-	Long:  `The chef supermarket subcommand is used to interact with cookbooks that are located in on the public Supermarket as well as private Chef Supermarket sites. A user account is required for any community actions that write data to the Chef Supermarket; however, the following arguments do not require a user account: download, search, install, and list.`,
+	Use:                   "supermarket COMMAND ARTIFACT_TYPE ARTIFACT_NAME",
+	Short:                 "chef supermarket subcommand is used to interact with cookbooks that are located in on the public Supermarket",
+	Long:                  `The chef supermarket subcommand is used to interact with cookbooks that are located in on the public Supermarket as well as private Chef Supermarket sites. A user account is required for any community actions that write data to the Chef Supermarket; however, the following arguments do not require a user account: download, search, install, and list.`,
+	DisableFlagsInUseLine: true,
 	PersistentPreRun: func(cmd *cobra.Command, args []string) {
+		if len(args) == 0 {
+			cmd.Help()
+			os.Exit(0)
+		}
 		if len(args) > 0 && args[0] != "enable" {
 			info, _ := os.Stat(filepath.Join(os.TempDir(), "f816c88c-aa94-11ec-b909-0242ac120002"))
 			if info == nil {
